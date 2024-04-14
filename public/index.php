@@ -3,11 +3,17 @@
 </head>
 
 <body>
-    <section class="headerBg">
-        <?php require('../app/View/layout/navbar.php') ?>
-        <h1 class="text-white">testing</h1>
-        <h1 class="text-white">
-            Status: You are logged in  <?php echo $_SESSION['FirstName']; ?>
-        </h1>
+    <section class="main-container">
+
+        <!-- Main - Section -->
+        <?php require("../app/View/layout/main.php") ?>
+
+        <!-- Footer - Section -->
+        <footer class="footer-container bg-light">
+            <?php require("../app/View/layout/footer.php") ?>
+        </footer>
+
     </section>
-    <?php require('../app/View/layout/footer.php') ?>
+</body>
+
+</html>

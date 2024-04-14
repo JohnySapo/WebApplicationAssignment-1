@@ -1,5 +1,6 @@
 <?php 
-    require("../app/Model/User.php");
+    require("User.php");
+    
     class Credential extends User{
         private $userID;        
         private $email;
@@ -10,9 +11,9 @@
         public function __construct($cUserID = '', $cEmail = '', $cPassword = '', $cConfPassword = '') {
             $this->userID = $cUserID;
             if(filter_var($cEmail, FILTER_VALIDATE_EMAIL) === false) {
-                echo 'Invalid email format!';
+                
             } elseif($cEmail == null) {
-                echo 'An email is required!';
+               
             } else {
                 $this->email = $cEmail;
             }

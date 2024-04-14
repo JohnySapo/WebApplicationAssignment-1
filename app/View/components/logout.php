@@ -6,7 +6,7 @@
 -->
 
 <?php 
-    require_once ("session.php");
+    require ("session.php");
     $session = new session();
     $session -> forgetSession();
 ?>

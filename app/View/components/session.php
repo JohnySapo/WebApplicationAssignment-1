@@ -28,7 +28,7 @@ class session {
 
     public function forgetSession() {
         $this -> killSession();
-        header("Location: http://localhost/src/public/index.php");
+        header("Location: http://localhost/public/index.php");
         exit;
     }
 }
