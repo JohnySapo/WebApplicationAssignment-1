@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- 
     -- Student Number: B00139596
     -- Student Name: Johny Ramos
@@ -9,12 +10,20 @@
 <?php
     class User {
         private $userID;
+=======
+<?php
+    class User {
+>>>>>>> f354be1a675ec2e2bf51ee30f8998d6f377f9942
         private $firstName;
         private $lastName;
         private $dateOfBirth;
 
+<<<<<<< HEAD
         public function __construct($cUserID='',$cFirstName='', $cLastName='', $cDateOfBirth='', $cEmail='', $cSecondEmail='', $cPassword='', $cPasswordSalt='') {
             $this->userID = $cUserID;
+=======
+        public function __construct($cFirstName, $cLastName, $cDateOfBirth, $cEmail, $cSecondEmail, $cPassword, $cPasswordSalt) {
+>>>>>>> f354be1a675ec2e2bf51ee30f8998d6f377f9942
             if($cFirstName == null) {
                 $this->firstName = "";
             } else {
@@ -32,14 +41,20 @@
             }
         }
 
+<<<<<<< HEAD
         public function getUserID() {return $this->userID;}
+=======
+>>>>>>> f354be1a675ec2e2bf51ee30f8998d6f377f9942
         public function getFirstName() {return $this->firstName;}
         public function getLastName() {return $this->lastName;}
         public function getDateOfBirth() {return $this->dateOfBirth;}
 
+<<<<<<< HEAD
         public function setUserID($setUserID){
             $this->firstName = $setUserID;
         }
+=======
+>>>>>>> f354be1a675ec2e2bf51ee30f8998d6f377f9942
         public function setFirstName($setFirstName){
             if($setFirstName == null) {
                 $this->firstName = "";

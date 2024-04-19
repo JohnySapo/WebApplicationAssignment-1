@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* 
     -- Student Number: B00139596
     -- Student Name: Johny Ramos
@@ -17,4 +18,18 @@ window.addEventListener('scroll', function() {
     } else {
         navHeader.classList.remove('customer-navHeader');
     }
+=======
+"use strict";
+
+const formCon = document.getElementById('formContainer');
+const signUpBtn = document.getElementById('signUp');
+const logInBtn = document.getElementById('logIn');
+
+signUpBtn.addEventListener('click', () => {
+    formCon.classList.add("active");
+});
+
+logInBtn.addEventListener('click', () => {
+    formCon.classList.remove("active");
+>>>>>>> f354be1a675ec2e2bf51ee30f8998d6f377f9942
 });
