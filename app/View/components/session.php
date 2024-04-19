@@ -1,12 +1,13 @@
 <!-- 
--- Student Name: Johny Ramos
--- Course: T054 - Computer System Management
--- Module: Web Application
--- Lecturer: Robert Smith
+    -- Student Number: B00139596
+    -- Student Name: Johny Ramos
+    -- Course: T054 - Computer System Management
+    -- Module: Web Application
+    -- Lecturer: Robert Smith
 -->
 
 <?php 
-class session {
+class Session {
     public function killSession() {
         $_SESSION = []; //overwrite the current session array with an empty array.
 
@@ -28,7 +29,7 @@ class session {
 
     public function forgetSession() {
         $this -> killSession();
-        header("Location: http://localhost/src/public/index.php");
+        header("Location: http://localhost/public/index.php");
         exit;
     }
 }

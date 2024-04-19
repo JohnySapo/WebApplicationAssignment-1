@@ -1,5 +1,4 @@
 <!-- 
-    -- Student Number: B00139596
     -- Student Name: Johny Ramos
     -- Course: T054 - Computer System Management
     -- Module: Web Application
@@ -133,6 +132,7 @@
                     WHERE ADDRESSID = :AddressID";
 
                 $result = $this->database->Update($sql, $new_reg);
+                var_dump($result);
 
                 if($result) {
                     header("location:addresses.php");

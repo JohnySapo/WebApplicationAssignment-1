@@ -1,15 +1,8 @@
-<<<<<<< HEAD
   -- Student Number: B00139596
   -- Student Name: Johny Ramos
   -- Course: T054 - Computer System Management
   -- Module: Web Application
   -- Lecturer: Robert Smith
-=======
--- Student Name: Johny Ramos
--- Course: T054 - Computer System Management
--- Module: Web Application
--- Lecturer: Robert Smith
->>>>>>> f354be1a675ec2e2bf51ee30f8998d6f377f9942
 
 -- SQL File
 
@@ -20,10 +13,6 @@ USE PHPASSIGNMENT;
 CREATE TABLE Users (
   UserID INT(20) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   PrimaryEmail VARCHAR(100) NOT NULL,
-<<<<<<< HEAD
-=======
-  SecondaryEmail VARCHAR(100),
->>>>>>> f354be1a675ec2e2bf51ee30f8998d6f377f9942
   Password VARCHAR(100) NOT NULL,
   FirstName VARCHAR(100),
   LastName VARCHAR(100),
