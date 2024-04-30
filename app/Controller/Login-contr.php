@@ -7,19 +7,17 @@
 -->
 
 <?php 
-    require("../app/Model/Cleaner.php");
     require("../app/Model/Credential.php");
     require("../app/Model/Database.php");
+    require("../app/Model/Cleaner.php");
 
     class login {
-        private $cleaner;
         private $credential;
         private $database;
         private $errorMessage;
         const NO_ROWS_FOUND = -1;
     
         public function __construct() {
-            $this -> cleaner = new Cleaner();
             $this -> credential = new Credential();
             $this -> database = new Database();
         }
@@ -31,12 +29,8 @@
             if(isset($_POST[$login])) {
                 if(!empty($_POST['email']) && !empty($_POST['password'])) {
 
-                    $this -> credential -> setEmail(
-                        $this -> cleaner -> cleanData($_POST['email'])
-                    );
-                    $this -> credential -> setPassword(
-                        $this -> cleaner -> cleanData($_POST['password'])
-                    );
+                    $this -> credential -> setEmail($_POST['email']);
+                    $this -> credential -> setPassword($_POST['password']);
  
                     $email = $this -> credential -> getEmail();
                     $password = $this -> credential -> getPassword();
@@ -55,7 +49,7 @@
                             $this -> setErrorMessage("Email or Password Invalid!");
                         } else {
 
-                            $_SESSION["Active"] = true;
+                            $_SESSION["Active"]       = true;
                             $_SESSION['UserID']       = $row["UserID"];
                             $_SESSION['PrimaryEmail'] = $row["PrimaryEmail"];
                             $_SESSION['FirstName']    = $row["FirstName"];

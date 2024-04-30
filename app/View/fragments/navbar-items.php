@@ -7,9 +7,41 @@
 -->
 
 <a href="#" class=" iconNav"><i class="fa-solid fa-magnifying-glass"></i></a>
-<a href="#" class=" iconNav"><i class="fa-regular fa-heart"></i></a>
-<a href="#" class=" iconNav"><i class="fa-solid fa-cart-shopping"></i></a>
-<button class="navbar-toggler d-xl-none d-lg-none text-white m-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+<?php
+if (isset($_SESSION['FirstName']) && isset($_SESSION["wish"])) {
+        $countWish = count($_SESSION["wish"]);
+?>
+    <a href="wish.php" class=" iconNav position-relative">
+        <i class="fa-regular fa-heart"></i>
+        <?php if($countWish > 0) {?>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <?php echo $countWish; ?>
+        </span>
+        <?php }?>
+    </a>
+<?php } else { ?>
+    <a href="wish.php" class=" iconNav position-relative">
+        <i class="fa-regular fa-heart"></i>
+    </a>
+<?php }?>
+<?php 
+if (isset($_SESSION['FirstName']) && isset($_SESSION["cart"]) ) {
+    $countCart = count($_SESSION["cart"]);
+?>
+        <a href="cart.php" class=" iconNav position-relative">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <?php if($countCart > 0) {?>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <?php echo $countCart; ?>
+            </span>
+            <?php }?>
+        </a>
+<?php } else { ?>
+    <a href="cart.php" class=" iconNav">
+        <i class="fa-solid fa-cart-shopping"></i>
+    </a>
+<?php } ?>
+<button class="navbar-toggler d-xl-none d-lg-none bg-light m-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
 </button>
 </div>
@@ -33,21 +65,13 @@
                 <a class="nav-link text-light" href="#">Outlet</a>
             </li>
             <li class="nav-item mx-4 fw-lighter">
-                <a class="nav-link text-light" href="#">Accessories</a>
+                <a class="nav-link text-light" href="#">Accesories</a>
             </li>
-            <li class="nav-item mx-4 fw-lighter dropdown">
-                <a class="nav-link text-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
-                </a>
-                <ul class="dropdown-menu mt-3 navBag">
-                    <li><a class="dropdown-item text-light" href="#">Action</a></li>
-                    <li><a class="dropdown-item text-light" href="#">Another action</a></li>
-                    <li>
-                        <hr class=" dropdown-divider bg-white">
-                    </li>
-                    <li><a class=" dropdown-item text-light" href="#">Something else here</a></li>
-                </ul>
-            </li>
+            <?php if (isset($_SESSION['FirstName'])) { ?>
+                <li class="nav-item mx-4 fw-lighter">
+                    <a class="nav-link text-light" href="storedashboard.php">Shop Dashboard</a>
+                </li>
+            <?php }  else {echo "";}?>
         </ul>
     </div>
 </nav>

@@ -16,20 +16,17 @@
                 <h1 class="display-2 text-light fw-bold">Designed specially for you</h1>
             </div>
             <div class="row p-2 border rounded-1" style="height: 610px; margin-top:100px;">
-            <a href="#/" class="ps-2 col-lg-6 col-12 rounded-2 text-decoration-none centImg1 d-flex justify-content-center align-content-center">
+            <a href="/public/storedashboard.php?section=Her" class="ps-2 col-lg-6 col-12 rounded-2 text-decoration-none centImg1 d-flex justify-content-center align-content-center">
                     <div class="d-flex justify-content-center align-items-center">
                         <h1 class="d-flex align-content-center text-dark fs-3 px-2 py-1 bg-light rounded-1">For Her</h1>
                     </div>
                 </a>
-                <a href="#/" class="ps-2 col-lg-6 col-12 rounded-2 text-decoration-none centImg2 d-flex justify-content-center align-content-center">
+                <a href="/public/storedashboard.php?section=Him" class="ps-2 col-lg-6 col-12 rounded-2 text-decoration-none centImg2 d-flex justify-content-center align-content-center">
                     <div class="d-flex justify-content-center align-items-center">
                         <h2 class="d-flex align-content-center text-dark fs-3 px-2 py-1 bg-light rounded-1">For Him</h2>
                     </div>
                 </a>
             </div>
         </div>
-    </section>
-    <section class="py-5">
-        <h1>Hello World</h1>
     </section>
 </main>

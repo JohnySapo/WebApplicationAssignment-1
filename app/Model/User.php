@@ -7,28 +7,33 @@
 -->
 
 <?php
+
     class User {
         private $userID;
         private $firstName;
         private $lastName;
         private $dateOfBirth;
+        private $cleaner;
 
-        public function __construct($cUserID='',$cFirstName='', $cLastName='', $cDateOfBirth='', $cEmail='', $cSecondEmail='', $cPassword='', $cPasswordSalt='') {
-            $this->userID = $cUserID;
+        public function __construct($cUserID='',$cFirstName='', $cLastName='', $cDateOfBirth='') {
+
+            $this->cleaner = new Cleaner();
+
+            $this->userID = $this -> cleaner -> cleanData($cUserID);
             if($cFirstName == null) {
                 $this->firstName = "";
             } else {
-                $this->firstName = $cFirstName;
+                $this->firstName = $this -> cleaner -> cleanData($cFirstName);
             }
             if($cLastName == null) {
                 $this->lastName = "";
             } else {
-                $this->lastName = $cLastName;
+                $this->lastName = $this -> cleaner -> cleanData($cLastName);
             }
             if($cDateOfBirth == null) {
                 $this->dateOfBirth = "1999-1-1";
             } else {
-                $this->dateOfBirth = $cDateOfBirth;
+                $this->dateOfBirth = $this -> cleaner -> cleanData($cDateOfBirth);
             }
         }
 
@@ -38,27 +43,27 @@
         public function getDateOfBirth() {return $this->dateOfBirth;}
 
         public function setUserID($setUserID){
-            $this->firstName = $setUserID;
+            $this->firstName = $this -> cleaner -> cleanData($setUserID);
         }
         public function setFirstName($setFirstName){
             if($setFirstName == null) {
-                $this->firstName = "";
+                    $this->firstName = "";
             } else {
-                $this->firstName = $setFirstName;
+                $this->firstName = $this -> cleaner -> cleanData($setFirstName);
             }
         }
         public function setLastName($setLastName){
             if($setLastName == null) {
                 $this->lastName = "";
             } else {
-                $this->lastName = $setLastName;
+                $this->lastName = $this -> cleaner -> cleanData($setLastName);
             }
         }
         public function setDateOfBirth($setDateOfBirth){
             if($setDateOfBirth == null) {
                 $this->dateOfBirth = "1999-1-1";
             } else {
-                $this->dateOfBirth = $setDateOfBirth;
+                $this->dateOfBirth = $this -> cleaner -> cleanData($setDateOfBirth);
             }
         }
     }

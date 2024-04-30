@@ -7,23 +7,18 @@
 -->
 
 <?php 
-    require("User.php");
     
-    class Credential extends User{      
+    class Credential{      
         private $email;
         private $password;
         private $confPassword;
+        private $cleaner;
 
         public function __construct($cEmail = '', $cPassword = '', $cConfPassword = '') {
-            if(filter_var($cEmail, FILTER_VALIDATE_EMAIL) === false) {
-                
-            } elseif($cEmail == null) {
-               
-            } else {
-                $this->email = $cEmail;
-            }
-            $this->password = $cPassword;
-            $this->confPassword = $cConfPassword;
+            $this->cleaner = new Cleaner();
+            $this->email = $this -> cleaner -> cleanData($cEmail);
+            $this->password = $this -> cleaner -> cleanData($cPassword);
+            $this->confPassword = $this -> cleaner -> cleanData($cConfPassword);
         }
 
         public function getEmail() {return $this->email;}
@@ -34,14 +29,14 @@
             if(filter_var($setEmail, FILTER_VALIDATE_EMAIL) === false) {
                 echo 'Invalid email format!';
             } else {
-                $this->email = $setEmail;
+                $this->email = $this -> cleaner -> cleanData($setEmail);
             }
         }
         public function setPassword($setPassword){
-            $this->password = $setPassword;
+            $this->password = $this -> cleaner -> cleanData($setPassword);
         }
         public function setConfPassword($setConfPassword){
-            $this->confPassword = $setConfPassword;
+            $this->confPassword = $this -> cleaner -> cleanData($setConfPassword);
         }
     }
 ?>

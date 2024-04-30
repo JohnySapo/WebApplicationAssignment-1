@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <section class="main-address">
+    <section class="main-address bg-dark">
         <?php require("../app/View/layout/navbarstatic.php") ?>
 
         <div class="container">

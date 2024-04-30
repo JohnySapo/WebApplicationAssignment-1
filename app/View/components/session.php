@@ -29,7 +29,7 @@ class Session {
 
     public function forgetSession() {
         $this -> killSession();
-        header("Location: http://localhost/public/index.php");
+        header("Location:http://localhost/public/index.php");
         exit;
     }
 }

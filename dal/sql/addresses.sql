@@ -5,7 +5,6 @@
   -- Module: Web Application
   -- Lecturer: Robert Smith
 
-
 -- SQL File
 
 CREATE DATABASE PHPASSIGNMENT;
@@ -25,3 +24,6 @@ CREATE TABLE Addresses (
   FOREIGN KEY (UserID) REFERENCES Users(UserID),
   CONSTRAINT Unique_Address_ID UNIQUE (AddressID)
 );
+
+-- Only to test the database. "Do not use it in Production"
+INSERT INTO ADDRESSES VALUE (1, "Test Test2", 0845279577, "Test Address, Dublin 1203", "Ireland", "Dublin", 440, "D1203 PP03", 1);

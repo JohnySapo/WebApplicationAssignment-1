@@ -231,13 +231,13 @@ body {
 }
 
 .centImg1 {
-    background: url(../images/clothes/clo-ts-1.jpg) no-repeat center center /cover;
+    background: url(/public/images/background/Sections/her.jpg) no-repeat center center /cover;
     opacity: 0.75;
     transition: 0.3s;
 }
 
 .centImg2 {
-    background: url(../images/clothes/clo-ts-3.jpg) no-repeat center center /cover;
+    background: url(/public/images/background/Sections/him.jpg) no-repeat center center /cover;
     opacity: 0.75;
     transition: 0.3s;
 }
@@ -250,8 +250,6 @@ body {
 
 .main-address {
     min-height: 100vh; 
-    background: radial-gradient(circle at 10% 20%, rgb(0, 0, 0) 0%, rgb(64, 64, 64) 90.2%);
-
 }
 
 .page-active {
@@ -278,7 +276,7 @@ body {
     color: var(--orange-active);
 }
 
-.card {
+.cardAddress {
     background: transparent;
     backdrop-filter: blur(2px); 
     border: 3px solid var(--white-RGBA);
@@ -315,4 +313,105 @@ body {
     border: 1px solid var(--orange-active);
     color: var(--white-RGBA);
     font-weight: bold;
+}
+
+
+/* Shopping Dashboard */
+
+.sidebar {
+    position: fixed;
+    top: 13%;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    box-shadow: 1px solid rgba(0, 0, 0, .6);
+}
+
+.sidLine {
+    position: fixed;
+    top: 13%;
+    left: 15.5%;
+    bottom: 0;
+    z-index: 100;
+}
+
+.sidebar-sticky {
+    height: calc(100vh - 48px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+  
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #ffffff;
+}
+  
+.sidebar .nav-link .sideIcon {
+    margin-left: 4px;
+    color: #c6c6c6;
+}
+  
+.sidebar .nav-link.active {
+    color: var(--orange-active);
+}
+  
+.sidebar .nav-link:hover .sideIcon,
+.sidebar .nav-link.active .sideIcon {
+    color: inherit;
+}
+  
+.sidebar-heading {
+    font-size: .75rem;
+}
+
+.serHoverBtnShop {
+    background-image: linear-gradient(var(--orange-active),var(--orange-active));
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: .4s;
+}
+
+.serHoverBtnShop:hover {
+    background-size: 100% 100%;
+    border: 1px solid var(--orange-active);
+    color: var(--white-RGBA);
+}
+
+.mainShop {
+    position: fixed;
+    top: 13%;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    box-shadow: 1px solid rgba(0, 0, 0, .6);
+}
+
+.heartHover {
+    color: var(--black-RGBA);
+    transition: 0.4s;
+}
+
+.heartHover:hover {
+    color: red;
+}
+
+.textOrange {
+    color: var(--orange-active);
+}
+
+/* Cart Page */
+
+.serHoverShop {
+    background-image: linear-gradient(var(--orange-active),var(--orange-active));
+    background-size: 0 100%;
+    background-repeat: no-repeat;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: .4s;
+}
+
+.serHoverShop:hover {
+    background-size: 100% 100%;
+    border: 1px solid var(--orange-active);
+    color: var(--white-RGBA);
 }

@@ -21,4 +21,5 @@ CREATE TABLE Users (
   CONSTRAINT unique_primary_email UNIQUE (PrimaryEmail)
 );
 
-INSERT INTO USERS VALUES (1,"b00139596@mytudublin.ie", "b00139596.2@mytudublin.ie", 123, "Johny", "Ramos", "1991-01-01");
+-- Only to test the database. "Do not use it in Production"
+INSERT INTO USERS VALUE (1, "test@gmail.com", "testpassword", "Test", "Test2", "1999-01-01");
