@@ -8,13 +8,14 @@
 
 "use strict";
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const removeButtons = document.querySelectorAll('.remove-address');
     const modalTitle = document.querySelector('.modal-title');
     const modalBody = document.querySelector('.modal-body');
+    const RemoveAddress = document.getElementById('RemoveAddress');
 
-    removeButtons.forEach(function(button) {
-        button.addEventListener('click', function(event) {
+    removeButtons.forEach(function (button) {
+        button.addEventListener('click', function (event) {
             const fullName = this.getAttribute('data-full-name');
             const apartmentHouse = this.getAttribute('data-apartment-house');
             const address = this.getAttribute('data-address');
@@ -22,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const postCode = this.getAttribute('data-post-code');
             const country = this.getAttribute('data-country');
             const phone = this.getAttribute('data-phone');
+            const addressID = this.getAttribute('data-address-id');
+            RemoveAddress.href = `addresses.php?ID=${addressID}`;
 
             modalTitle.textContent = 'Confirm Deletion';
             modalBody.innerHTML = `
@@ -49,8 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="small mt-4">
                         <strong class="">Please note:</strong> Deleting this address will not delete any pending orders being dispatched to this address.
                     </p>
-                </div>
-            `;
+                </div>`;
         });
     });
 });

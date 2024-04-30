@@ -26,7 +26,7 @@
 <body>
 
     <!-- Main Content -->
-    <section class="main-address">
+    <section class="main-address bg-dark">
         <?php require("../app/View/layout/navbarstatic.php") ?>
 
         <div class="container">
@@ -43,7 +43,7 @@
                 <h1 class=" fs-3 fw-lighter text-light">Your Addresses</h1>
             </div>
             <div class="row g-0 px-1 py-1 d-flex justify-content-center">
-                <a href="newaddress.php" class="card col-lg-3 col-12 mb-1 ms-1 text-decoration-none shadow-lg" style="width: 20rem;">
+                <a href="newaddress.php" class="card cardAddress col-lg-3 col-12 mb-1 ms-1 text-decoration-none shadow-lg" style="width: 20rem;">
                     <div class="card-body d-flex justify-content-center align-items-center">
                         <div class="">
                             <h1 class="fs-1 text-center fw-light text-white">
@@ -56,7 +56,7 @@
                 <?php if ($addresses > 0) {
                     foreach ($addresses as $display) { ?>
                         <div class="col-lg-3 col-12 mb-1 ms-1">
-                            <div class="card shadow-lg" style="width: 20rem;">
+                            <div class="card cardAddress shadow-lg" style="width: 20rem;">
                                 <div class="card-body py-4">
                                     <h6 class="card-subtitle text-white mb-2 text-muted fw-bold ps-2 py-2"><?php echo $display["FullName"] ?></h6>
                                     <ul class=" list-unstyled">
@@ -126,8 +126,8 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-around bg-light">
                         <a type="button" class="btn w-25 serHoverBtn" data-bs-dismiss="modal">NO</a>
-                        <a type="button" href="addresses.php?id=<?php echo $display["AddressID"] ?>" class="btn w-50 address-remove text-dark">
-                            YES
+                        <a type="button" href="addresses.php?ID=" id="RemoveAddress" class="btn w-50 address-remove text-dark">
+                            YES 
                         </a>
                     </div>
                 </div>

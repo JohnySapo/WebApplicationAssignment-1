@@ -7,6 +7,7 @@
 -->
 
 <?php
+    require("Cleaner.php");
     class Address{
         private $addressID;
         private $fullName;
@@ -16,16 +17,18 @@
         private $city;
         private $apartmentHouseNumber;
         private $postCode;
+        private $cleaner;
 
         public function __construct($cID='', $cfullName='', $cphone='',$cAddress='', $cCountry='', $cCity='', $cAptHouseNumber='', $cPostCode=''){
-            $this->addressID = $cID;
-            $this->fullName = $cfullName;
-            $this->phone = $cphone;
-            $this->address = $cAddress;
-            $this->country = $cCountry;
-            $this->city = $cCity;
-            $this->apartmentHouseNumber = $cAptHouseNumber;
-            $this->postCode = $cPostCode;
+            $this->cleaner = new Cleaner();
+            $this->addressID = $this -> cleaner -> cleanData($cID);
+            $this->fullName = $this -> cleaner -> cleanData($cfullName);
+            $this->phone = $this -> cleaner -> cleanData($cphone);
+            $this->address = $this -> cleaner -> cleanData($cAddress);
+            $this->country = $this -> cleaner -> cleanData($cCountry);
+            $this->city = $this -> cleaner -> cleanData($cCity);
+            $this->apartmentHouseNumber = $this -> cleaner -> cleanData($cAptHouseNumber);
+            $this->postCode = $this -> cleaner -> cleanData($cPostCode);
         }
 
         public function getAddressID() {return $this->addressID;}
@@ -38,28 +41,28 @@
         public function getPostCode() {return $this->postCode;}
 
         public function setAddressID($setID){
-            $this->addressID = $setID;
+            $this->addressID = $this -> cleaner -> cleanData($setID);
         }
         public function setFullName($fullName){
-            $this->fullName = $fullName;
+            $this->fullName = $this -> cleaner -> cleanData($fullName);
         }
         public function setPhone($phone){
-            $this->phone = $phone;
+            $this->phone = $this -> cleaner -> cleanData($phone);
         }
         public function setAddress($setAddress){
-            $this->address = $setAddress;
+            $this->address = $this -> cleaner -> cleanData($setAddress);
         }
         public function setCountry($setCountry){
-            $this->country = $setCountry;
+            $this->country = $this -> cleaner -> cleanData($setCountry);
         }
         public function setCity($setCity){
-            $this->city = $setCity;
+            $this->city = $this -> cleaner -> cleanData($setCity);
         }
         public function setApartmentHouseNumber($setAptHouseNumber){
-            $this->apartmentHouseNumber = $setAptHouseNumber;
+            $this->apartmentHouseNumber = $this -> cleaner -> cleanData($setAptHouseNumber);
         }
         public function setPostCode($setPostCode){
-            $this->postCode = $setPostCode;
+            $this->postCode = $this -> cleaner -> cleanData($setPostCode);
         }
     }
 ?>

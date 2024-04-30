@@ -14,16 +14,16 @@
     $singleAddress = $address->singleAddress('id');
     $editAddress = $address->editAddress('submit');
 
-    if($editAddress > 0) {
-        header("location:addresses.php");
-        exit;
-    }
+    // if($editAddress > 0) {
+    //     header("location:addresses.php");
+    //     exit;
+    // }
 ?>
 <title>Your Addresses</title>
 </head>
 
 <body>
-    <section class="main-address">
+    <section class="main-address bg-dark">
         <?php require("../app/View/layout/navbarstatic.php") ?>
 
         <div class="container">

@@ -6,31 +6,28 @@
 -->
 
 <?php
-    require("../app/Model/Cleaner.php");
     require("../app/Model/Address.php");
     require("../app/Model/Credential.php");
     require("../app/Model/Database.php");
 
     class AddressManage {
         private $userID;
-        private $cleaner;
         private $address;
         private $database;
         const NO_ROWS_FOUND = -1;
 
         public function __construct() {
             $this -> userID = $_SESSION['UserID'];
-            $this -> cleaner = new Cleaner();
             $this -> address = new Address();
             $this -> database = new Database();
         }
 
         public function singleAddress($singleAddress) {
             if(isset($_GET[$singleAddress])) {
-                $id = $_GET['id'];
+                $this -> address -> setAddressID($_GET['id']);
 
                 $sql = 'SELECT * FROM ADDRESSES WHERE ADDRESSID = :ID;';
-                $parameters = [':ID' => $id];
+                $parameters = [':ID' => $this -> address -> getAddressID()];
                 $result = $this -> database -> Select($sql, $parameters);
 
                 return $result;
@@ -50,30 +47,22 @@
 
             if(isset($_POST[$newAddress])) {
 
-                $this -> address -> setFullName($this -> cleaner -> cleanData($_POST['name']));
-                $this -> address -> setPhone($this -> cleaner -> cleanData($_POST['phone']));
-                $this -> address -> setApartmentHouseNumber($this -> cleaner -> cleanData($_POST['house']));
-                $this -> address -> setAddress($this -> cleaner -> cleanData($_POST['address']));
-                $this -> address -> setPostCode($this -> cleaner -> cleanData($_POST['postcode']));
-                $this -> address -> setCity($this -> cleaner -> cleanData($_POST['city']));
-                $this -> address -> setCountry($this -> cleaner -> cleanData($_POST['country']));
-
-                $name = $this -> address -> getFullName();
-                $phone = $this -> address -> getPhone();
-                $aptHouseNumber = $this -> address -> getApartmentHouseNumber();
-                $addressText = $this -> address -> getAddress();
-                $postcode = $this -> address -> getPostCode();
-                $city = $this -> address -> getCity();
-                $country = $this -> address -> getCountry();
+                $this -> address -> setFullName($_POST['name']);
+                $this -> address -> setPhone($_POST['phone']);
+                $this -> address -> setApartmentHouseNumber($_POST['house']);
+                $this -> address -> setAddress($_POST['address']);
+                $this -> address -> setPostCode($_POST['postcode']);
+                $this -> address -> setCity($_POST['city']);
+                $this -> address -> setCountry($_POST['country']);
 
                 $new_reg = array(
-                    "FullName"              => $name,
-                    "Phone"                 => $phone,
-                    "Address"               => $addressText,
-                    "Country"               => $country,
-                    "City"                  => $city,
-                    "ApartmentHouseNumber"  => $aptHouseNumber,
-                    "PostCode"              => $postcode,
+                    "FullName"              => $this -> address -> getFullName(),
+                    "Phone"                 => $this -> address -> getPhone(),
+                    "Address"               => $this -> address -> getAddress(),
+                    "Country"               => $this -> address -> getCountry(),
+                    "City"                  => $this -> address -> getCity(),
+                    "ApartmentHouseNumber"  => $this -> address -> getApartmentHouseNumber(),
+                    "PostCode"              => $this -> address -> getPostCode(),
                     "UserID"                => $this -> userID,
                 );
 
@@ -93,32 +82,24 @@
         public function editAddress($editAddress) {
             if(isset($_POST[$editAddress])) {
 
-                $this -> address -> setFullName($this -> cleaner -> cleanData($_POST['name']));
-                $this -> address -> setPhone($this -> cleaner -> cleanData($_POST['phone']));
-                $this -> address -> setApartmentHouseNumber($this -> cleaner -> cleanData($_POST['house']));
-                $this -> address -> setAddress($this -> cleaner -> cleanData($_POST['address']));
-                $this -> address -> setPostCode($this -> cleaner -> cleanData($_POST['postcode']));
-                $this -> address -> setCity($this -> cleaner -> cleanData($_POST['city']));
-                $this -> address -> setCountry($this -> cleaner -> cleanData($_POST['country']));
-
-                $id = $_GET['id'];
-                $name = $this -> address -> getFullName();
-                $phone = $this -> address -> getPhone();
-                $aptHouseNumber = $this -> address -> getApartmentHouseNumber();
-                $addressText = $this -> address -> getAddress();
-                $postcode = $this -> address -> getPostCode();
-                $city = $this -> address -> getCity();
-                $country = $this -> address -> getCountry();
+                $this -> address -> setAddressID($_GET['id']);
+                $this -> address -> setFullName($_POST['name']);
+                $this -> address -> setPhone($_POST['phone']);
+                $this -> address -> setApartmentHouseNumber($_POST['house']);
+                $this -> address -> setAddress($$_POST['address']);
+                $this -> address -> setPostCode($_POST['postcode']);
+                $this -> address -> setCity($_POST['city']);
+                $this -> address -> setCountry($_POST['country']);
 
                 $new_reg = [
-                    "FullName"              => $name,
-                    "Phone"                 => $phone,
-                    "Address"               => $addressText,
-                    "Country"               => $country,
-                    "City"                  => $city,
-                    "ApartmentHouseNumber"  => $aptHouseNumber,
-                    "PostCode"              => $postcode,
-                    "AddressID"             => $id,
+                    "FullName"              => $this -> address -> getFullName(),
+                    "Phone"                 => $this -> address -> getPhone(),
+                    "Address"               => $this -> address -> getAddress(),
+                    "Country"               => $this -> address -> getCountry(),
+                    "City"                  => $this -> address -> getCity(),
+                    "ApartmentHouseNumber"  => $this -> address -> getApartmentHouseNumber(),
+                    "PostCode"              => $this -> address -> getPostCode(),
+                    "AddressID"             => $this -> address -> getAddressID(),
                 ];
                 
                 $sql = "UPDATE addresses SET
@@ -132,7 +113,6 @@
                     WHERE ADDRESSID = :AddressID";
 
                 $result = $this->database->Update($sql, $new_reg);
-                var_dump($result);
 
                 if($result) {
                     header("location:addresses.php");
@@ -141,19 +121,13 @@
             }
         }
 
-        public function modalAddress($modalAddress) {
-            $sql = 'SELECT * FROM ADDRESSES WHERE ADDRESSID = :id;';
-            $parameters = [':id' => $modalAddress];
-            $result = $this -> database -> Select($sql, $parameters);
-        }
-
         public function removeAddress() {
-            if(isset($_GET['id'])) {
+            if(isset($_GET['ID'])) {
                 
-                $id = $_GET['id'];
+                $this -> address -> setAddressID($_GET['ID']);
 
-                $sql = 'DELETE FROM ADDRESSES WHERE ADDRESSID = :id;';
-                $parameters = [':id' => $id];
+                $sql = 'DELETE FROM ADDRESSES WHERE ADDRESSID = :ID;';
+                $parameters = [':ID' => $this -> address -> getAddressID()];
 
                 $result = $this->database->Remove($sql, $parameters);
 

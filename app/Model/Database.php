@@ -11,7 +11,7 @@
     class Database {
         
         const NO_ROWS_FOUND = -1;
-        private $connection = null;
+        protected $connection = null;
 
         public function __construct(){
             global $dsn, $username, $password, $options;

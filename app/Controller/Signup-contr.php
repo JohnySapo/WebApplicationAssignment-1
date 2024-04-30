@@ -7,19 +7,19 @@
 -->
 
 <?php 
-    require("../app/Model/Cleaner.php");
     require("../app/Model/Credential.php");
+    require("../app/Model/User.php");
     require("../app/Model/Database.php");
+    require("../app/Model/Cleaner.php");
     
     class Signup {
-        private $cleaner;
+        private $user;
         private $credential;
         private $database;
         private $errorMessage;
-        const NO_ROWS_FOUND = -1;
 
         public function __construct() {
-            $this -> cleaner = new Cleaner();
+            $this -> user = new User();
             $this -> credential = new Credential();
             $this -> database = new Database();
         }
@@ -36,19 +36,18 @@
             if (isset($_POST[$signup])) {
                 if (!empty($_POST['firstName']) && !empty($_POST['lastName']) && !empty($_POST['email']) && !empty($_POST['password']) &&!empty($_POST['confPassword'])) {
     
-                    $this -> credential -> setEmail($this -> cleaner -> cleanData($_POST['email']));
-                    $this -> credential -> setPassword($this -> cleaner -> cleanData($_POST['password']));
-                    $this -> credential -> setConfPassword($this -> cleaner -> cleanData($_POST['confPassword']));
-                    $this -> credential -> setFirstName($this -> cleaner -> cleanData($_POST['firstName']));
-                    $this -> credential -> setLastName($this -> cleaner -> cleanData($_POST['lastName']));
+                    $this -> credential -> setEmail($_POST['email']);
+                    $this -> user -> setFirstName($_POST['firstName']);
+                    $this -> user -> setLastName($_POST['lastName']);
+                    $this -> credential -> setPassword($_POST['password']);
+                    $this -> credential -> setConfPassword($_POST['confPassword']);
     
                     $email = $this -> credential -> getEmail();
                     $password = $this -> passwordHash($this -> credential -> getPassword()); 
-                    $firstName = $this -> credential -> getFirstName();
-                    $lastName = $this -> credential -> getLastName();
-                    $dateOfBirth = $this -> credential -> getDateOfBirth();
+                    $firstName = $this -> user -> getFirstName();
+                    $lastName = $this -> user -> getLastName();
+                    $dateOfBirth = $this -> user -> getDateOfBirth();
 
-                    // Check if email already exists
                     $sqlCheck = "SELECT COUNT(*) AS count FROM users WHERE PrimaryEmail = :email";
                     $parametersCheck = [':email' => $email];
                     $resultCheck = $this -> database -> Select($sqlCheck, $parametersCheck);
@@ -57,11 +56,11 @@
                         $this -> setErrorMessage("Email already registered!");
                     } else {
                         $new_reg = array(
-                            "PrimaryEmail"      => $email,
-                            "Password"          => $password,
-                            "FirstName"         => $firstName,
-                            "LastName"          => $lastName,
-                            "DateOfBirth"       => $dateOfBirth,
+                            "PrimaryEmail"      => $this -> credential -> getEmail(),
+                            "Password"          => $this -> passwordHash($this -> credential -> getPassword()),
+                            "FirstName"         => $this -> user -> getFirstName(),
+                            "LastName"          => $this -> user -> getLastName(),
+                            "DateOfBirth"       => $this -> user -> getDateOfBirth(),
                         );
 
                         $sql = sprintf( "INSERT INTO %s (%s) VALUES (%s)", "users",
@@ -74,7 +73,7 @@
 
                         $row = $result[0];
                         
-                        $_SESSION["Active"] = true;
+                        $_SESSION["Active"]       = true;
                         $_SESSION['UserID']       = $row["UserID"];
                         $_SESSION['PrimaryEmail'] = $row["PrimaryEmail"];
                         $_SESSION['FirstName']    = $row["FirstName"];
